@@ -18,10 +18,10 @@ class AbstractController
 
     public function __construct()
     {
-        $usesEntity = $this->resolveUsesEntity();
-        if($usesEntity){
-            $this->usesEntity = $usesEntity;
-        }
+
+
+            $this->usesEntity =$this->resolveUsesEntity();
+            
 
         if($this->usesEntity){
             $this->repository = $this->getRepository($this->resolveDefaultEntityName());
@@ -34,11 +34,11 @@ class AbstractController
 
         $attributes = $reflect->getAttributes(UsesEntity::class);
 
-        if(!empty($attributes[0])){
+        if(!empty($attributes)){
             return $attributes[0]->getArguments()["value"];
 
         }else{
-            return false;
+            return true;
         }
     }
 
